@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DiplomaFinance</string>
+    <!-- Activity main menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_market">Market</string>
+    <!-- Home fragment -->
+    <string name="home_fragment">Home</string>
+    <!-- Market fragment -->
+    <string name="market_fragment">Market</string>
+
 </resources>
