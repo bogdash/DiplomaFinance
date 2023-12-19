@@ -6,6 +6,41 @@
     <!-- Home fragment -->
     <string name="home_fragment">Home</string>
     <!-- Market fragment -->
+    <!-- title stocks -->
     <string name="market_fragment">Market</string>
+    <string name="title_1">Сбер Банк</string>
+    <string name="title_2">Газпром</string>
+    <string name="title_3">ЛУКОЙЛ</string>
+    <string name="title_4">Роснефть</string>
+    <string name="title_5">Яндекс</string>
+    <string name="title_6">TCS GROUP</string>
+    <string name="title_7">1–800-Flowers.com Inc</string>
+    <string name="title_8">10X Genomics Inc</string>
+    <string name="title_9">2seventy bio</string>
+    <string name="title_10">2U Inc</string>
+
+    <!-- ticker stocks -->
+    <string name="ticker_1">SBER</string>
+    <string name="ticker_2">GAZP</string>
+    <string name="ticker_3">LKOH</string>
+    <string name="ticker_4">ROSN</string>
+    <string name="ticker_5">YNDX</string>
+    <string name="ticker_6">TCSG</string>
+    <string name="ticker_7">FLWS</string>
+    <string name="ticker_8">TXG</string>
+    <string name="ticker_9">TSVT</string>
+    <string name="ticker_10">TWOU</string>
+
+    <!-- price stocks -->
+    <string name="price_1">267.21 ₽</string>
+    <string name="price_2">165.21 ₽</string>
+    <string name="price_3">6 706.5 ₽</string>
+    <string name="price_4">573.2 ₽</string>
+    <string name="price_5">2 262 ₽</string>
+    <string name="price_6">3 070 ₽</string>
+    <string name="price_7">8.67 $</string>
+    <string name="price_8">2.26 $</string>
+    <string name="price_9">2.26 $</string>
+    <string name="price_10">4.01 $</string>
 
 </resources>
