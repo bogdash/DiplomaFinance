@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/marketFragment"
-        android:name="com.bogdash.diplomafinance.MarketFragment"
+        android:name="com.bogdash.diplomafinance.market.MarketFragment"
         android:label="fragment_market"
         tools:layout="@layout/fragment_market" />
 </navigation>
