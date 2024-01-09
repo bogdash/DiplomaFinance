@@ -30,7 +30,7 @@ class MarketFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = layoutManager
-        adapter = MarketAdapter(stocksArrayList)
+        adapter = MarketAdapter(stocksArrayList, requireContext())
         recyclerView.adapter = adapter
     }
 
