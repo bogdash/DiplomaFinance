@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bogdash.diplomafinance.R
 import com.bogdash.diplomafinance.chart.ChartActivity
@@ -29,8 +28,9 @@ class MarketAdapter(private val stocksList: ArrayList<Stock>, private val contex
         holder.title.text = currentItem.title
         holder.ticker.text = currentItem.ticker
         holder.price.text = currentItem.price
-        holder.itemMarket.setOnClickListener {
+        holder.itemView.setOnClickListener {
             val intent = Intent(context, ChartActivity::class.java)
+            intent.putExtra("title", currentItem.title)
             context.startActivity(intent)
         }
     }
@@ -40,7 +40,6 @@ class MarketAdapter(private val stocksList: ArrayList<Stock>, private val contex
         val title: TextView = itemView.findViewById(R.id.tv_title)
         val ticker: TextView = itemView.findViewById(R.id.tv_ticker)
         val price: TextView = itemView.findViewById(R.id.tv_price)
-        val itemMarket: ConstraintLayout = itemView.findViewById(R.id.item_market)
     }
 
 }
