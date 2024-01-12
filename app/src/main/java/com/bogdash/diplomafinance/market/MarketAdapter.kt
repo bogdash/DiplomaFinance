@@ -31,6 +31,7 @@ class MarketAdapter(private val stocksList: ArrayList<Stock>, private val contex
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ChartActivity::class.java)
             intent.putExtra("title", currentItem.title)
+            intent.putExtra("price", currentItem.price)
             context.startActivity(intent)
         }
     }

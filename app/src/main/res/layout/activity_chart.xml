@@ -30,16 +30,25 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             <TextView
-                android:id="@+id/tv_price_top_app_bar"
+                android:id="@+id/tv_stock_top_app_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
-                android:text="TextView"
+                android:text="@string/title_1"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_price_chart_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/price_1"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 </LinearLayout>

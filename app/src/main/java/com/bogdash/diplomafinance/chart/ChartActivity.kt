@@ -27,8 +27,12 @@ class ChartActivity : AppCompatActivity() {
         }
 
         val title = intent.getStringExtra("title")
-        val textViewPrice: TextView = binding.tvPriceTopAppBar
-        textViewPrice.text = title
+        val textViewStock: TextView = binding.tvStockTopAppBar
+        textViewStock.text = title
+
+        val price = intent.getStringExtra("price")
+        val textViewPrice: TextView = binding.tvPriceChartActivity
+        textViewPrice.text = price
 
         val toolbar = binding.topAppBar
         setSupportActionBar(toolbar)
