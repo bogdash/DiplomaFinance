@@ -2,8 +2,10 @@ package com.bogdash.diplomafinance.chart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import com.bogdash.diplomafinance.R
 import com.bogdash.diplomafinance.databinding.ActivityChartBinding
 
 class ChartActivity : AppCompatActivity() {
@@ -30,5 +32,10 @@ class ChartActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_for_tool_bar, menu)
+        return true
     }
 }
