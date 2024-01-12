@@ -1,9 +1,11 @@
 package com.bogdash.diplomafinance.chart
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowInsetsController
 import android.widget.TextView
 import com.bogdash.diplomafinance.R
 import com.bogdash.diplomafinance.databinding.ActivityChartBinding
@@ -16,6 +18,13 @@ class ChartActivity : AppCompatActivity() {
         binding = ActivityChartBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            )
+        }
 
         val title = intent.getStringExtra("title")
         val textViewPrice: TextView = binding.tvPriceTopAppBar
