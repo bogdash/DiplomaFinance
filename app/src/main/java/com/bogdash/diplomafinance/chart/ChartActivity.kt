@@ -1,24 +1,34 @@
 package com.bogdash.diplomafinance.chart
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowInsetsController
+import android.widget.Switch
 import android.widget.TextView
 import com.bogdash.diplomafinance.R
 import com.bogdash.diplomafinance.databinding.ActivityChartBinding
+import com.bogdash.diplomafinance.movingaverages.simpleMovingAverage
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.materialswitch.MaterialSwitch
 
 class ChartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChartBinding
     private lateinit var lineChart: LineChart
+
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private lateinit var switchSMA: Switch
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private lateinit var switchWMA: Switch
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,6 +56,22 @@ class ChartActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         chartDrawing()
+
+        switchSMA = binding.switchSma
+        switchWMA = binding.switchWma
+
+        switchSMA.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                switchWMA.isChecked = false
+            }
+        }
+
+        switchWMA.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                switchSMA.isChecked = false
+            }
+        }
+
     }
 
     private fun chartDrawing() {
@@ -91,7 +117,7 @@ class ChartActivity : AppCompatActivity() {
         lineChart.data = lineData
         lineChart.description.text = "Line chart"
 
-        lineChart.animateY(2000)
+        lineChart.animateY(300)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
