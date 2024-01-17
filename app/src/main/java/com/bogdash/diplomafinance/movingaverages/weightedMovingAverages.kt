@@ -1,6 +1,6 @@
 package com.bogdash.diplomafinance.movingaverages
 
-fun weightedMovingAverages(array: Array<Int>, window: Int, weights: List<Double>): Array<Float> {
+fun weightedMovingAverages(array: Array<Float>, window: Int, weights: List<Double>): Array<Float> {
     require(window > 0 && weights.size == window)
     { "Размер окна должен быть положительным числом, и размер весов должен соответствовать размеру окна" }
 
@@ -15,7 +15,7 @@ fun weightedMovingAverages(array: Array<Int>, window: Int, weights: List<Double>
     return result.toTypedArray()
 }
 
-fun calculateWeightedAverage(values: Array<Int>, weights: List<Double>): Float {
+fun calculateWeightedAverage(values: Array<Float>, weights: List<Double>): Float {
     require(values.size == weights.size)
     { "Размер значений должен соответствовать размеру весов" }
 

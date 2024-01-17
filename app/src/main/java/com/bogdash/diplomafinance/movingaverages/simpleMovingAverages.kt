@@ -1,6 +1,6 @@
 package com.bogdash.diplomafinance.movingaverages
 
-fun simpleMovingAverage (array: Array<Int>, window: Int): Array<Float> {
+fun simpleMovingAverage (array: Array<Float>, window: Int): Array<Float> {
     require(window > 0) { "Размер окна должен быть положительным числом" }
 
     val result = mutableListOf<Float>()

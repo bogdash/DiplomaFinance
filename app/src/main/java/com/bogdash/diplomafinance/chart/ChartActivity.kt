@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowInsetsController
@@ -14,12 +13,12 @@ import android.widget.TextView
 import com.bogdash.diplomafinance.R
 import com.bogdash.diplomafinance.databinding.ActivityChartBinding
 import com.bogdash.diplomafinance.movingaverages.simpleMovingAverage
+import com.bogdash.diplomafinance.movingaverages.weightedMovingAverages
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.google.android.material.materialswitch.MaterialSwitch
 
 class ChartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChartBinding
@@ -55,59 +54,70 @@ class ChartActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        chartDrawing()
-
         switchSMA = binding.switchSma
         switchWMA = binding.switchWma
+        lineChart = binding.lineChart
 
+        chart()
         switchSMA.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 switchWMA.isChecked = false
+                updateChart()
+            } else {
+                updateChart()
             }
         }
 
         switchWMA.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 switchSMA.isChecked = false
+                updateChart()
+            } else {
+                updateChart()
             }
         }
-
     }
 
-    private fun chartDrawing() {
-        // исходный график
-        lineChart = binding.lineChart
-        val list: ArrayList<Entry> = ArrayList()
+    private fun updateChart() {
+        if (!switchSMA.isChecked && !switchWMA.isChecked) {
+            chart()
+        } else if (switchSMA.isChecked) {
+            chartSMA()
+        } else if (switchWMA.isChecked) {
+            chartWMA()
+        }
+    }
 
-        list.add(Entry(1f, 5f))
-        list.add(Entry(2f, 3f))
-        list.add(Entry(3f, 4f))
-        list.add(Entry(4f, 2f))
-        list.add(Entry(5f, 1f))
-        list.add(Entry(6f, 6f))
-        list.add(Entry(7f, 7f))
-        list.add(Entry(8f, 8f))
-        list.add(Entry(9f, 8f))
-        list.add(Entry(10f, 5f))
+    private fun chart() {
 
-        // сглаженные данные
-        val movingList: ArrayList<Entry> = ArrayList()
-
-        movingList.add(Entry(3f, 4f))
-        movingList.add(Entry(4f, 3f))
-        movingList.add(Entry(5f, 2.33f))
-        movingList.add(Entry(6f, 3f))
-        movingList.add(Entry(7f, 4.66f))
-        movingList.add(Entry(8f, 7f))
-        movingList.add(Entry(9f,7.66f))
-        movingList.add(Entry(10f, 7f))
-
-        // отображение линий
-        val lineDataSet1 = LineDataSet(list, "List")
+        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val listEntry = arrayToEntry(list)
+        val lineDataSet1 = LineDataSet(listEntry, "List")
         lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
         lineDataSet1.valueTextColor = Color.BLACK
 
-        val lineDataSet2 = LineDataSet(movingList, "Moving List")
+        val lineData = LineData(lineDataSet1)
+        lineChart.data = lineData
+        lineChart.description.text = "Line chart"
+
+        lineChart.animateY(300)
+    }
+
+    private fun chartSMA() {
+        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val listEntry = arrayToEntry(list)
+
+        // сглаженные данные
+        val window = 3
+        val movingList = simpleMovingAverage(list, window)
+        val movingListEntry = arrayToEntry(movingList)
+
+        // отображение линий
+        val lineDataSet1 = LineDataSet(listEntry, "List")
+        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+        lineDataSet1.valueTextColor = Color.BLACK
+
+        val lineDataSet2 = LineDataSet(movingListEntry, "Moving List")
         lineDataSet2.setColors(ColorTemplate.JOYFUL_COLORS, 255)
         lineDataSet2.valueTextColor = Color.BLACK
         lineDataSet2.mode = LineDataSet.Mode.CUBIC_BEZIER
@@ -120,6 +130,38 @@ class ChartActivity : AppCompatActivity() {
         lineChart.animateY(300)
     }
 
+    private fun chartWMA() {
+        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val listEntry = arrayToEntry(list)
+
+        // сглаженные данные
+        val window = 3
+        val weights: List<Double> = listOf(0.3, 0.5, 0.2)
+        val movingList = weightedMovingAverages(list, window, weights)
+        val movingListEntry = arrayToEntry(movingList)
+
+        // отображение линий
+        val lineDataSet1 = LineDataSet(listEntry, "List")
+        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+        lineDataSet1.valueTextColor = Color.BLACK
+
+        val lineDataSet2 = LineDataSet(movingListEntry, "Moving List")
+        lineDataSet2.setColors(ColorTemplate.JOYFUL_COLORS, 255)
+        lineDataSet2.valueTextColor = Color.BLACK
+        lineDataSet2.mode = LineDataSet.Mode.CUBIC_BEZIER
+
+        val lineData = LineData(lineDataSet1, lineDataSet2)
+
+        lineChart.data = lineData
+        lineChart.description.text = "Line chart"
+
+        lineChart.animateY(300)
+    }
+    private fun arrayToEntry(array: Array<Float>): MutableList<Entry> {
+        val result = array.mapIndexed{ index, average ->
+        Entry(index.toFloat(), average)}.toMutableList()
+        return result
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home){
             finish()
