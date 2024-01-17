@@ -43,4 +43,8 @@
     <string name="price_9">2.26 $</string>
     <string name="price_10">4.01 $</string>
 
+    <!-- ChartActivivty -->
+    <string name="sma">SMA</string>
+    <string name="wma">WMA</string>
+
 </resources>
