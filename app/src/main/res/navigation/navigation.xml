@@ -9,10 +9,27 @@
         android:id="@+id/homeFragment"
         android:name="com.bogdash.diplomafinance.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
     <fragment
         android:id="@+id/marketFragment"
         android:name="com.bogdash.diplomafinance.market.MarketFragment"
         android:label="fragment_market"
         tools:layout="@layout/fragment_market" />
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.bogdash.diplomafinance.register.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.bogdash.diplomafinance.register.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>
