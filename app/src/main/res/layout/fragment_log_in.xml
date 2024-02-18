@@ -8,7 +8,7 @@
     tools:context=".register.LogInFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="144dp"
@@ -18,24 +18,27 @@
         android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_enter_email_log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/email">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_enter_email_log_in"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_enter_password_log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/password">
 
         <EditText
-            android:id="@+id/editTextTextPassword3"
+            android:id="@+id/ed_enter_password_log_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -44,19 +47,21 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/bt_log_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/log_in"
-        android:textSize="16sp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#7752C7"/>
+        android:backgroundTint="#7752C7"
+        android:text="@string/log_in"
+        android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/tv_forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        android:gravity="center"
         android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/forgot_password"
         android:textColor="#304CFB"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 </LinearLayout>

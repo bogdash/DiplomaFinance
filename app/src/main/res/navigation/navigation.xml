@@ -26,10 +26,23 @@
         android:id="@+id/logInFragment"
         android:name="com.bogdash.diplomafinance.register.LogInFragment"
         android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" />
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_personalAccountFragment"
+            app:destination="@id/personalAccountFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.bogdash.diplomafinance.register.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_personalAccountFragment"
+            app:destination="@id/personalAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalAccountFragment"
+        android:name="com.bogdash.diplomafinance.home.PersonalAccountFragment"
+        android:label="fragment_personal_account"
+        tools:layout="@layout/fragment_personal_account" />
 </navigation>
