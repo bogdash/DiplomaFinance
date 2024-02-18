@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723728066710",
+    "project_id": "androidfinance-2b03c",
+    "storage_bucket": "androidfinance-2b03c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723728066710:android:893a7ac290413fc1bcbab7",
+        "android_client_info": {
+          "package_name": "com.bogdash.diplomafinance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx6ITh9WUeg6hwUKBhXAoaAuOhWXuVRyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
