@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.DiplomaFinance" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">#6935C3</item>
+        <item name="colorPrimaryDark">#FFF4FF</item>
     </style>
 
     <style name="Theme.DiplomaFinance" parent="Base.Theme.DiplomaFinance" />
