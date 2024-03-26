@@ -44,5 +44,14 @@
         android:id="@+id/personalAccountFragment"
         android:name="com.bogdash.diplomafinance.home.PersonalAccountFragment"
         android:label="fragment_personal_account"
-        tools:layout="@layout/fragment_personal_account" />
+        tools:layout="@layout/fragment_personal_account" >
+        <action
+            android:id="@+id/action_personalAccountFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.bogdash.diplomafinance.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

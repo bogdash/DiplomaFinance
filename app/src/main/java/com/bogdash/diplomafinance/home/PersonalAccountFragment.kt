@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bogdash.diplomafinance.R
@@ -37,6 +38,10 @@ class PersonalAccountFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         adapter = StocksAdapter(portfolioStocksArrayList, requireContext())
         recyclerView.adapter = adapter
+
+        binding.imageViewSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_personalAccountFragment_to_settingsFragment)
+        }
     }
 
     private fun dataInitialize() {

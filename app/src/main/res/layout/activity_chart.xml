@@ -23,7 +23,7 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
+                android:background="#fff0ff"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="?attr/actionModeCloseDrawable"
                 app:menu="@menu/menu_for_tool_bar"
@@ -49,9 +49,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp">
 
             <TextView
                 android:id="@+id/tv_price_chart_activity"
@@ -88,6 +90,21 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/buy" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/material_dynamic_neutral40"
+                android:text="@string/sell" />
 
         </LinearLayout>
     </ScrollView>
