@@ -91,6 +91,17 @@
                 android:textStyle="bold"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+            <Switch
+                android:id="@+id/switch_ema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:minHeight="48dp"
+                android:text="@string/ema"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="UseSwitchCompatOrMaterialXml"/>
+
             <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"

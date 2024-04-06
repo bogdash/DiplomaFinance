@@ -46,6 +46,7 @@
     <!-- ChartActivivty -->
     <string name="sma">SMA</string>
     <string name="wma">WMA</string>
+    <string name="ema">EMA</string>
     <string name="buy">Купить</string>
     <string name="sell">Продать</string>
 

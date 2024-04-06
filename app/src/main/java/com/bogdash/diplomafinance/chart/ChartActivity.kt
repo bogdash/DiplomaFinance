@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowInsetsController
@@ -12,6 +13,7 @@ import android.widget.Switch
 import android.widget.TextView
 import com.bogdash.diplomafinance.R
 import com.bogdash.diplomafinance.databinding.ActivityChartBinding
+import com.bogdash.diplomafinance.movingaverages.exponentiallyWeightedMovingAverage
 import com.bogdash.diplomafinance.movingaverages.simpleMovingAverage
 import com.bogdash.diplomafinance.movingaverages.weightedMovingAverages
 import com.github.mikephil.charting.charts.LineChart
@@ -28,6 +30,8 @@ class ChartActivity : AppCompatActivity() {
     private lateinit var switchSMA: Switch
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private lateinit var switchWMA: Switch
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private lateinit var switchEMA: Switch
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,12 +60,14 @@ class ChartActivity : AppCompatActivity() {
 
         switchSMA = binding.switchSma
         switchWMA = binding.switchWma
+        switchEMA = binding.switchEma
         lineChart = binding.lineChart
 
         chart()
         switchSMA.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 switchWMA.isChecked = false
+                switchEMA.isChecked = false
                 updateChart()
             } else {
                 updateChart()
@@ -71,6 +77,17 @@ class ChartActivity : AppCompatActivity() {
         switchWMA.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 switchSMA.isChecked = false
+                switchEMA.isChecked = false
+                updateChart()
+            } else {
+                updateChart()
+            }
+        }
+
+        switchEMA.setOnCheckedChangeListener{ _, isChecked ->
+            if (isChecked) {
+                switchSMA.isChecked = false
+                switchWMA.isChecked = false
                 updateChart()
             } else {
                 updateChart()
@@ -79,12 +96,14 @@ class ChartActivity : AppCompatActivity() {
     }
 
     private fun updateChart() {
-        if (!switchSMA.isChecked && !switchWMA.isChecked) {
+        if (!switchSMA.isChecked && !switchWMA.isChecked && !switchEMA.isChecked) {
             chart()
         } else if (switchSMA.isChecked) {
             chartSMA()
         } else if (switchWMA.isChecked) {
             chartWMA()
+        } else if (switchEMA.isChecked) {
+            chartEMA()
         }
     }
 
@@ -138,6 +157,34 @@ class ChartActivity : AppCompatActivity() {
         val window = 3
         val weights: List<Double> = listOf(0.3, 0.5, 0.2)
         val movingList = weightedMovingAverages(list, window, weights)
+        val movingListEntry = arrayToEntry(movingList)
+
+        // отображение линий
+        val lineDataSet1 = LineDataSet(listEntry, "List")
+        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+        lineDataSet1.valueTextColor = Color.BLACK
+
+        val lineDataSet2 = LineDataSet(movingListEntry, "Moving List")
+        lineDataSet2.setColors(ColorTemplate.JOYFUL_COLORS, 255)
+        lineDataSet2.valueTextColor = Color.BLACK
+        lineDataSet2.mode = LineDataSet.Mode.CUBIC_BEZIER
+
+        val lineData = LineData(lineDataSet1, lineDataSet2)
+
+        lineChart.data = lineData
+        lineChart.description.text = "Line chart"
+
+        lineChart.animateY(300)
+    }
+
+    private fun chartEMA() {
+        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val listEntry = arrayToEntry(list)
+
+        // сглаженные данные
+        val alpha = 0.3f
+        val movingList = exponentiallyWeightedMovingAverage(list, alpha)
+        Log.d("TAG", movingList.joinToString(", "))
         val movingListEntry = arrayToEntry(movingList)
 
         // отображение линий
