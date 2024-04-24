@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.WindowInsetsController
 import android.widget.Switch
 import android.widget.TextView
+import com.bogdash.diplomafinance.EmptyFormatter
 import com.bogdash.diplomafinance.R
 import com.bogdash.diplomafinance.databinding.ActivityChartBinding
 import com.bogdash.diplomafinance.movingaverages.exponentiallyWeightedMovingAverage
@@ -115,21 +116,27 @@ class ChartActivity : AppCompatActivity() {
 
     private fun chart() {
 
-        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val list: Array<Float> = arrayOf(3f, 3f, 4f, 2f, 1f, 6f, 10f, 8f, 8f, 5f, 5f, 1f, 4f, 2f, 2f, 6f, 7f, 3f, 8f, 5f, 6f, 3f, 4f, 2f, 1f, 6f, 9f, 8f, 8f, 6f)
         val listEntry = arrayToEntry(list)
         val lineDataSet1 = LineDataSet(listEntry, "List")
-        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+        lineDataSet1.color = Color.BLACK
+        lineDataSet1.setDrawValues(false)
         lineDataSet1.valueTextColor = Color.BLACK
+        lineDataSet1.setDrawCircles(false)
 
         val lineData = LineData(lineDataSet1)
         lineChart.data = lineData
         lineChart.description.text = "Line chart"
 
+        val yAxisLeft = lineChart.axisLeft
+        val yAxisRight = lineChart.axisRight
+        yAxisLeft.valueFormatter = EmptyFormatter()
+        yAxisRight.valueFormatter = EmptyFormatter()
         lineChart.animateY(300)
     }
 
     private fun chartSMA() {
-        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val list: Array<Float> = arrayOf(3f, 3f, 4f, 2f, 1f, 6f, 10f, 8f, 8f, 5f, 5f, 1f, 4f, 2f, 2f, 6f, 7f, 3f, 8f, 5f, 6f, 3f, 4f, 2f, 1f, 6f, 9f, 8f, 8f, 6f)
         val listEntry = arrayToEntry(list)
 
         // сглаженные данные
@@ -139,11 +146,18 @@ class ChartActivity : AppCompatActivity() {
 
         // отображение линий
         val lineDataSet1 = LineDataSet(listEntry, "List")
-        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+        lineDataSet1.color = Color.BLACK
+        lineDataSet1.setDrawValues(false)
         lineDataSet1.valueTextColor = Color.BLACK
+        lineDataSet1.setDrawCircles(false)
+
 
         val lineDataSet2 = LineDataSet(movingListEntry, "Moving List")
         lineDataSet2.setColors(ColorTemplate.JOYFUL_COLORS, 255)
+        lineDataSet2.setDrawValues(false)
+        lineDataSet2.setDrawCircles(false)
+
+
         lineDataSet2.valueTextColor = Color.BLACK
         lineDataSet2.mode = LineDataSet.Mode.CUBIC_BEZIER
 
@@ -151,12 +165,16 @@ class ChartActivity : AppCompatActivity() {
 
         lineChart.data = lineData
         lineChart.description.text = "Line chart"
+        val yAxisLeft = lineChart.axisLeft
+        val yAxisRight = lineChart.axisRight
+        yAxisLeft.valueFormatter = EmptyFormatter()
+        yAxisRight.valueFormatter = EmptyFormatter()
 
         lineChart.animateY(300)
     }
 
     private fun chartWMA() {
-        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val list: Array<Float> = arrayOf(3f, 3f, 4f, 2f, 1f, 6f, 10f, 8f, 8f, 5f, 5f, 1f, 4f, 2f, 2f, 6f, 7f, 3f, 8f, 5f, 6f, 3f, 4f, 2f, 1f, 6f, 9f, 8f, 8f, 6f)
         val listEntry = arrayToEntry(list)
 
         // сглаженные данные
@@ -167,11 +185,19 @@ class ChartActivity : AppCompatActivity() {
 
         // отображение линий
         val lineDataSet1 = LineDataSet(listEntry, "List")
-        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+//        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+        lineDataSet1.color = Color.BLACK
+        lineDataSet1.setDrawValues(false)
+        lineDataSet1.setDrawCircles(false)
+
+
         lineDataSet1.valueTextColor = Color.BLACK
 
         val lineDataSet2 = LineDataSet(movingListEntry, "Moving List")
         lineDataSet2.setColors(ColorTemplate.JOYFUL_COLORS, 255)
+        lineDataSet2.setDrawValues(false)
+        lineDataSet2.setDrawCircles(false)
+
         lineDataSet2.valueTextColor = Color.BLACK
         lineDataSet2.mode = LineDataSet.Mode.CUBIC_BEZIER
 
@@ -179,12 +205,16 @@ class ChartActivity : AppCompatActivity() {
 
         lineChart.data = lineData
         lineChart.description.text = "Line chart"
+        val yAxisLeft = lineChart.axisLeft
+        val yAxisRight = lineChart.axisRight
+        yAxisLeft.valueFormatter = EmptyFormatter()
+        yAxisRight.valueFormatter = EmptyFormatter()
 
         lineChart.animateY(300)
     }
 
     private fun chartEMA() {
-        val list: Array<Float> = arrayOf(5f, 3f, 4f, 2f, 1f, 6f, 7f, 8f, 8f, 5f)
+        val list: Array<Float> = arrayOf(3f, 3f, 4f, 2f, 1f, 6f, 10f, 8f, 8f, 5f, 5f, 1f, 4f, 2f, 2f, 6f, 7f, 3f, 8f, 5f, 6f, 3f, 4f, 2f, 1f, 6f, 9f, 8f, 8f, 6f)
         val listEntry = arrayToEntry(list)
 
         // сглаженные данные
@@ -195,18 +225,29 @@ class ChartActivity : AppCompatActivity() {
 
         // отображение линий
         val lineDataSet1 = LineDataSet(listEntry, "List")
-        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+//        lineDataSet1.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+        lineDataSet1.color = Color.BLACK
+        lineDataSet1.setDrawValues(false)
         lineDataSet1.valueTextColor = Color.BLACK
+        lineDataSet1.setDrawCircles(false)
+
 
         val lineDataSet2 = LineDataSet(movingListEntry, "Moving List")
         lineDataSet2.setColors(ColorTemplate.JOYFUL_COLORS, 255)
+        lineDataSet2.setDrawValues(false)
         lineDataSet2.valueTextColor = Color.BLACK
+        lineDataSet2.setDrawCircles(false)
+
         lineDataSet2.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         val lineData = LineData(lineDataSet1, lineDataSet2)
 
         lineChart.data = lineData
         lineChart.description.text = "Line chart"
+        val yAxisLeft = lineChart.axisLeft
+        val yAxisRight = lineChart.axisRight
+        yAxisLeft.valueFormatter = EmptyFormatter()
+        yAxisRight.valueFormatter = EmptyFormatter()
 
         lineChart.animateY(300)
     }
