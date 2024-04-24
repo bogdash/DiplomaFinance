@@ -1,6 +1,7 @@
 package com.bogdash.diplomafinance.chart
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -92,6 +93,11 @@ class ChartActivity : AppCompatActivity() {
             } else {
                 updateChart()
             }
+        }
+
+        binding.buttonBuy.setOnClickListener {
+            val intent = Intent(this, BuyActivity::class.java)
+            startActivity(intent)
         }
     }
 

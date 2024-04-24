@@ -103,14 +103,14 @@
                 tools:ignore="UseSwitchCompatOrMaterialXml"/>
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_buy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="@string/buy" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/button_sell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
